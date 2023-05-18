@@ -28,14 +28,17 @@ export default function SubscriptionForm() {
   }
 
   const validate = (email) => {
-    if (email.trim(/^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/).match() == null) {
+    const emailRegex = /^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
+
+    if (!emailRegex.test(email)) {
       return false;
     } else if (email.trim() === '') {
       return false;
     }
 
     return true;
-  }
+  };
+
 
   return (
     <form className="w-full flex-w flex-c-m validate-form" onSubmit={handleSubmit}>
